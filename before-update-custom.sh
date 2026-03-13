@@ -10,3 +10,5 @@
 
 # echo "src-git kenzo https://github.com/kenzok8/openwrt-packages" >> ./feeds.conf.default   
 # echo "src-git small https://github.com/kenzok8/small" >> ./feeds.conf.default
+# 添加 ua3f 源码仓库
+echo 'src-git ua3f https://github.com/chenhw2/luci-app-ua3f.git' >> feeds.conf.default
