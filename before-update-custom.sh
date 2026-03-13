@@ -12,3 +12,6 @@
 # echo "src-git small https://github.com/kenzok8/small" >> ./feeds.conf.default
 # 添加 ua3f 源码仓库
 echo 'src-git ua3f https://github.com/chenhw2/luci-app-ua3f.git' >> feeds.conf.default
+
+# 添加 Lucky 源码仓库 (以防官方库没收录)
+echo 'src-git lucky https://github.com/gdy666/luci-app-lucky.git' >> feeds.conf.default
