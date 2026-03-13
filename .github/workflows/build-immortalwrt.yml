@@ -94,11 +94,21 @@ jobs:
       id: package
       run: |
         cd openwrt
+        # 基础配置生成
         make defconfig
+        # 强制注入 NFQUEUE 关键内核模块及工具
+        echo "CONFIG_PACKAGE_kmod-nf-conntrack-netlink=y" >> .config
+        echo "CONFIG_PACKAGE_kmod-ipt-nfqueue=y" >> .config
+        echo "CONFIG_PACKAGE_iptables-mod-nfqueue=y" >> .config
+        echo "CONFIG_PACKAGE_iptables-mod-ipopt=y" >> .config
+        echo "CONFIG_PACKAGE_kmod-ipt-ipopt=y" >> .config
+        # 再次执行 defconfig 以补全注入项的依赖关系
+        make defconfig
+        # 开始下载源码包
         make download -j8 V=11
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
-
+        
     - name: Compile the firmware
       id: compile
       run: |
